@@ -18,6 +18,10 @@ See `assets/characters/README.md` and copy `assets/characters/example/manifest.j
 
 The bundled default pack is `assets/characters/shinchan/manifest.json`. Its nine generated sprites are embedded into `lib/client.js` during `pnpm build`, so the installed plugin does not need a separate web server for the artwork.
 
+Here is the bundled Shin-chan desktop pet sprite sheet. The states are arranged left to right and top to bottom as `idle`, `walk`, `run`, `sleep`, `think`, `celebrate`, `surprised`, `drag`, and `talk`.
+
+![Shin-chan desktop pet state preview](assets/characters/shinchan/sprite-sheet.png)
+
 A host client can switch characters at runtime:
 
 ```js
