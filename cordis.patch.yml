@@ -1,0 +1,4 @@
+- insert:
+    - id: desktop-pet
+      name: dsh-desktop-pet
+      config: {}

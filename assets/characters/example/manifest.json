@@ -1,0 +1,16 @@
+{
+  "id": "my-pet",
+  "name": "我的宠物",
+  "size": 150,
+  "assets": {
+    "idle": "./idle.png",
+    "walk": "./walk.png",
+    "run": "./run.png",
+    "sleep": "./sleep.png",
+    "think": "./think.png",
+    "celebrate": "./celebrate.png",
+    "surprised": "./surprised.png",
+    "drag": "./drag.png",
+    "talk": "./talk.png"
+  }
+}
