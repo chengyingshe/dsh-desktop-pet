@@ -1,7 +1,24 @@
 {
-  "name": "dsh-desktop-pet",
+  "name": "@chengyingshe/dsh-desktop-pet",
   "version": "0.1.0",
   "description": "Interactive desktop pet for the DeepSeek Harness Web GUI",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chengyingshe/dsh-desktop-pet.git"
+  },
+  "homepage": "https://github.com/chengyingshe/dsh-desktop-pet#readme",
+  "bugs": {
+    "url": "https://github.com/chengyingshe/dsh-desktop-pet/issues"
+  },
+  "keywords": [
+    "dsh-plugin",
+    "deepseek-harness",
+    "desktop-pet"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "provenance": true
+  },
   "type": "module",
   "main": "lib/index.js",
   "types": "lib/index.d.ts",

@@ -74,4 +74,12 @@ dsh plugin --profile web add github:chengyingshe/dsh-desktop-pet#main
 
 Git 安装会通过 `prepare` 自动生成 `lib/` 发布产物。
 
+也可以从 npm 官方源安装：
+
+```sh
+dsh plugin --profile web add @chengyingshe/dsh-desktop-pet
+```
+
+发布由 GitHub Actions 自动完成。先在仓库 Actions secrets 中添加具有发布权限的 `NPM_TOKEN`，再创建与 `package.json` 版本一致的 GitHub Release（例如版本 `0.1.0` 对应标签 `v0.1.0`）。
+
 Restart `dsh web`, refresh the existing GUI at `http://127.0.0.1:3080`, and look in the bottom-right corner.
