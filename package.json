@@ -21,6 +21,7 @@
   ],
   "scripts": {
     "build": "tsc -p tsconfig.json && node scripts/build-client.mjs",
+    "prepare": "pnpm build",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "split:sprites": "node scripts/split-sprite-sheet.mjs"
   },

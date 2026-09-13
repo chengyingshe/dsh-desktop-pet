@@ -66,4 +66,12 @@ pnpm build
 dsh plugin --profile web add link:$PWD
 ```
 
+从 GitHub 安装发布版本：
+
+```sh
+dsh plugin --profile web add github:chengyingshe/dsh-desktop-pet#main
+```
+
+Git 安装会通过 `prepare` 自动生成 `lib/` 发布产物。
+
 Restart `dsh web`, refresh the existing GUI at `http://127.0.0.1:3080`, and look in the bottom-right corner.
