@@ -2,8 +2,8 @@ import { mkdir, readFile, writeFile } from 'node:fs/promises'
 
 const states = ['idle', 'walk', 'run', 'sleep', 'think', 'celebrate', 'surprised', 'drag', 'talk']
 const assetRoot = new URL('../assets/characters/shinchan/sprites/', import.meta.url)
-const catRoot = new URL('../assets/characters/orange-cat/', import.meta.url)
-const anyaRoot = new URL('../assets/characters/anya/', import.meta.url)
+const catRoot = new URL('../assets/characters/orange-cat/sprites/', import.meta.url)
+const anyaRoot = new URL('../assets/characters/anya/sprites/', import.meta.url)
 const assets = Object.fromEntries(await Promise.all(states.map(async (state) => {
   const bytes = await readFile(new URL(`${state}.png`, assetRoot))
   return [state, `data:image/png;base64,${bytes.toString('base64')}`]

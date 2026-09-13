@@ -10,6 +10,8 @@ A configurable, interactive desktop pet for the DeepSeek Harness Web GUI.
 | 橘猫 | `assets/characters/orange-cat/` | 右键 → 切换宠物 |
 | 阿尼亚风格 | `assets/characters/anya/` | 右键 → 切换宠物 |
 
+每套角色均遵循相同结构：`manifest.json` 描述角色，九种状态图片统一放在 `sprites/` 目录中。
+
 ## Features
 
 - Idle, walking, running, sleeping, thinking, celebrating, surprised, dragged, and talking states.

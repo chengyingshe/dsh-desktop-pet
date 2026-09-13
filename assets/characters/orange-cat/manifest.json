@@ -1,0 +1,16 @@
+{
+  "id": "orange-cat",
+  "name": "橘猫",
+  "size": 150,
+  "assets": {
+    "idle": "./sprites/idle.png",
+    "walk": "./sprites/walk.png",
+    "run": "./sprites/run.png",
+    "sleep": "./sprites/sleep.png",
+    "think": "./sprites/think.png",
+    "celebrate": "./sprites/celebrate.png",
+    "surprised": "./sprites/surprised.png",
+    "drag": "./sprites/drag.png",
+    "talk": "./sprites/talk.png"
+  }
+}
