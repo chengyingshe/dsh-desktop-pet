@@ -1,5 +1,6 @@
 const inject = [];
 const DEFAULT_CHARACTER_ASSETS = {};
+const BUILTIN_CHARACTERS = [];
 
 const DEFAULT_CHARACTER = {
   id: "shinchan",
@@ -94,7 +95,7 @@ function apply(ctx) {
     pet.dataset.menu = "false";
     pet.setAttribute("role", "button");
     pet.setAttribute("tabindex", "0");
-    pet.innerHTML = `<div class="dsh-pet-bubble" role="status" aria-live="polite"></div><div class="dsh-pet-menu" role="menu"><button type="button" data-action="talk">和宠物说话</button><button type="button" data-action="walk">出去走走</button><button type="button" data-action="sleep">睡一会儿</button><button type="button" data-action="asset">更换当前动作图片</button><button type="button" data-action="reset-asset">恢复默认形象</button><button type="button" data-action="sound">关闭提示音</button><button type="button" data-action="hide">暂时隐藏</button></div><input class="dsh-pet-file" type="file" accept="image/png,image/webp,image/gif,image/jpeg,image/svg+xml"><div class="dsh-pet-stage"><div class="dsh-pet-shadow"></div><div class="dsh-pet-image"></div><span class="dsh-pet-status" aria-hidden="true">闲</span></div>`;
+    pet.innerHTML = `<div class="dsh-pet-bubble" role="status" aria-live="polite"></div><div class="dsh-pet-menu" role="menu"><button type="button" data-action="talk">和宠物说话</button><button type="button" data-action="walk">出去走走</button><button type="button" data-action="sleep">睡一会儿</button><button type="button" data-action="switch">切换宠物</button><button type="button" data-action="asset">更换当前动作图片</button><button type="button" data-action="reset-asset">恢复默认形象</button><button type="button" data-action="sound">关闭提示音</button><button type="button" data-action="hide">暂时隐藏</button></div><input class="dsh-pet-file" type="file" accept="image/png,image/webp,image/gif,image/jpeg,image/svg+xml"><div class="dsh-pet-stage"><div class="dsh-pet-shadow"></div><div class="dsh-pet-image"></div><span class="dsh-pet-status" aria-hidden="true">闲</span></div>`;
     document.body.appendChild(pet);
 
     const bubble = pet.querySelector(".dsh-pet-bubble");
@@ -282,6 +283,12 @@ function apply(ctx) {
       if (action === "talk") setState("talk", pick(STATE_LINES.idle), 1400);
       if (action === "walk") { const b = bounds(); animateMove(Math.random() * b.maxX, b.maxY - Math.random() * 50); }
       if (action === "sleep") setState("sleep", pick(STATE_LINES.sleep));
+      if (action === "switch" && BUILTIN_CHARACTERS.length > 1) {
+        const currentIndex = BUILTIN_CHARACTERS.findIndex((item) => item.id === character.id);
+        const next = BUILTIN_CHARACTERS[(currentIndex + 1) % BUILTIN_CHARACTERS.length];
+        character = { ...next, assets: { ...next.assets } };
+        saveJson(CHARACTER_KEY, character); renderImage(); speak(`${character.name}已就位。`);
+      }
       if (action === "asset") { assetTargetState = state; fileInput.click(); speak(`请选择${assetTargetState}动作的图片。`); }
       if (action === "reset-asset") { character = { ...DEFAULT_CHARACTER, assets: {} }; localStorage.removeItem(CHARACTER_KEY); renderImage(); speak("已恢复默认形象。"); }
       if (action === "sound") { prefs.sound = !prefs.sound; soundButton.textContent = prefs.sound ? "关闭提示音" : "开启提示音"; saveJson(STORE_KEY, prefs); speak(prefs.sound ? "提示音开启。" : "安静模式开启。"); }

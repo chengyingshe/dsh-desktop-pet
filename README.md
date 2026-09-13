@@ -11,6 +11,7 @@ A configurable, interactive desktop pet for the DeepSeek Harness Web GUI.
 - Position, visibility, sound, and custom character images persisted locally.
 - Right-click the pet to replace the current state's image or restore defaults.
 - Runtime event API for switching a complete character pack without changing core code.
+- Built-in Shin-chan and orange-cat character packs, switchable from the pet's right-click menu.
 
 ## Character packs
 
@@ -38,6 +39,8 @@ window.dispatchEvent(new CustomEvent("dsh-desktop-pet:set-character", {
 ```
 
 Missing states fall back to the idle image, then to the built-in vector artwork.
+
+Right-click the pet and choose **切换宠物** to cycle between the bundled 小新 and 橘猫 packs. The selected pet is saved locally and restored when the Web GUI is reopened.
 
 ## Sprite sheet workflow
 
