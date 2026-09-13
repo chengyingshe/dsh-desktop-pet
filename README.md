@@ -2,6 +2,14 @@
 
 A configurable, interactive desktop pet for the DeepSeek Harness Web GUI.
 
+本插件会在 dsh Web 页面右下角显示可互动的桌面宠物。当前内置三套宠物形象：
+
+| 形象 | 资源目录 | 切换方式 |
+| --- | --- | --- |
+| 小新 | `assets/characters/shinchan/` | 默认形象 |
+| 橘猫 | `assets/characters/orange-cat/` | 右键 → 切换宠物 |
+| 阿尼亚风格 | `assets/characters/anya/` | 右键 → 切换宠物 |
+
 ## Features
 
 - Idle, walking, running, sleeping, thinking, celebrating, surprised, dragged, and talking states.
@@ -83,3 +91,29 @@ dsh plugin --profile web add @maximeshe/dsh-desktop-pet
 发布由 GitHub Actions 自动完成。先在仓库 Actions secrets 中添加具有发布权限的 `NPM_TOKEN`，再创建与 `package.json` 版本一致的 GitHub Release（例如版本 `0.1.0` 对应标签 `v0.1.0`）。
 
 Restart `dsh web`, refresh the existing GUI at `http://127.0.0.1:3080`, and look in the bottom-right corner.
+
+## Coding Agent 自动安装
+
+将以下脚本交给 Coding Agent 执行即可完成安装。脚本会克隆仓库、构建插件、安装到 dsh 的 `web` profile，并检查插件是否已登记：
+
+```bash
+set -euo pipefail
+PLUGIN_DIR="${PLUGIN_DIR:-$PWD/dsh-desktop-pet}"
+if [ ! -d "$PLUGIN_DIR/.git" ]; then
+  git clone https://github.com/chengyingshe/dsh-desktop-pet.git "$PLUGIN_DIR"
+fi
+cd "$PLUGIN_DIR"
+pnpm install --frozen-lockfile
+pnpm typecheck
+pnpm build
+dsh plugin --profile web add "link:$PWD"
+dsh plugin --profile web list
+```
+
+安装后重启 dsh Web：
+
+```bash
+dsh web --no-open --port 3080
+```
+
+打开 <http://127.0.0.1:3080> 后，宠物应显示在右下角。右键宠物可切换形象、切换动作图片或隐藏宠物。若 dsh 已在运行，必须先停止旧进程再启动，确保加载最新 Bundle。
